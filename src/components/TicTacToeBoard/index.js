@@ -2,11 +2,21 @@ import React from 'react';
 import TicTacToeRow from '../TicTacToeRow';
 import style from './style.module.css';
 import getNumbersFromString from '../../helpers/utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { playerMove } from '../../actions';
 
 const TicTacToeBoard = () => {
   const dispatch = useDispatch();
+  const { gameState } = useSelector(({ ticTacToe }) => ticTacToe);
+
+  const handlePlayerTurn = (row, column) => {
+    const payload = {
+      row,
+      column
+    };
+
+    dispatch(playerMove(payload));
+  };
 
   const handlePlayerMove = ({ target }) => {
     const { id } = target;
@@ -15,12 +25,7 @@ const TicTacToeBoard = () => {
       const column = getNumbersFromString(id);
       const row = getNumbersFromString(target.parentElement.id);
 
-      const payload = {
-        row,
-        column
-      };
-
-      dispatch(playerMove(payload));
+      if (gameState[row][column] === 0) handlePlayerTurn(row, column)
     }
   }
 
