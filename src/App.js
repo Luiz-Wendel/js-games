@@ -1,8 +1,11 @@
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes/Routes';
+
 function App() {
   return (
-    <main>
-      <h1>JS Games</h1>
-    </main>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 
