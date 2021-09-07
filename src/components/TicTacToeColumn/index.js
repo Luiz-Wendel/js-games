@@ -8,7 +8,7 @@ const TicTacToeColumn = ({ reference }) => {
       className={ style.column }
     >
     </section>
-  )
+  );
 };
 
 export default TicTacToeColumn;

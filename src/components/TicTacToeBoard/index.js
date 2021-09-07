@@ -8,7 +8,7 @@ const TicTacToeBoard = () => {
       <TicTacToeRow reference={ 2 } />
       <TicTacToeRow reference={ 3 } />
     </section>
-  )
+  );
 };
 
 export default TicTacToeBoard;

@@ -9,7 +9,7 @@ const TicTacToeRow = ({ reference }) => {
       <TicTacToeColumn reference={ 2 } />
       <TicTacToeColumn reference={ 3 } />
     </section>
-  )
+  );
 };
 
 export default TicTacToeRow;
