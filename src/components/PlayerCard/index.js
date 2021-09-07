@@ -7,6 +7,6 @@ const PlayerCard = ({ id, title, image }) => {
       <span>{ image }</span>
     </section>
   )
-}
+};
 
 export default PlayerCard

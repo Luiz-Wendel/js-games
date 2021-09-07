@@ -1,0 +1,8 @@
+.column {
+  width: 5em;
+  height: 5em;
+}
+
+.column + .column {
+  border-left: 1px solid black;
+}
