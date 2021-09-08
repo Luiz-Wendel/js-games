@@ -7,15 +7,17 @@ import { playerMove } from '../../actions';
 
 const TicTacToeBoard = () => {
   const dispatch = useDispatch();
-  const { gameState } = useSelector(({ ticTacToe }) => ticTacToe);
+  const { gameState, playerTurn } = useSelector(({ ticTacToe }) => ticTacToe);
 
-  const handlePlayerTurn = (row, column) => {
+  const handlePlayerTurn = (row, column, target) => {
     const payload = {
       row,
       column
     };
 
     dispatch(playerMove(payload));
+
+    target.dataset.player = playerTurn;
   };
 
   const handlePlayerMove = ({ target }) => {
@@ -25,7 +27,7 @@ const TicTacToeBoard = () => {
       const column = getNumbersFromString(id);
       const row = getNumbersFromString(target.parentElement.id);
 
-      if (gameState[row][column] === 0) handlePlayerTurn(row, column)
+      if (gameState[row][column] === 0) handlePlayerTurn(row, column, target);
     }
   }
 
