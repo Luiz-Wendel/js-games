@@ -8,6 +8,10 @@ const INITIAL_STATE = {
   ],
   playerTurn: 1,
   winner: 0,
+  score: {
+    1: 0,
+    2: 0,
+  },
 };
 
 const setMove = (gameState, { row, column }, player) => {
@@ -30,6 +34,10 @@ const ticTacToeReducer = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         winner: payload.winner,
+        score: {
+          ...state.score,
+          [payload.winner]: state.score[payload.winner] + 1,
+        }
       };
     default:
       return state;
