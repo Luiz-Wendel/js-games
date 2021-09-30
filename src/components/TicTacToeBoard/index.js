@@ -47,7 +47,7 @@ const checkVictory = (gameState) => horizontalVictory(gameState)
 
 const TicTacToeBoard = () => {
   const dispatch = useDispatch();
-  const { gameState, playerTurn } = useSelector(({ ticTacToe }) => ticTacToe);
+  const { gameState, playerTurn, winner } = useSelector(({ ticTacToe }) => ticTacToe);
 
   React.useEffect(() => {
     const winner = checkVictory(gameState);
@@ -71,7 +71,7 @@ const TicTacToeBoard = () => {
   const handlePlayerMove = ({ target }) => {
     const { id } = target;
 
-    if (id.includes('column')) {
+    if (!winner && id.includes('column')) {
       const column = getNumbersFromString(id);
       const row = getNumbersFromString(target.parentElement.id);
 
