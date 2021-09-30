@@ -4,6 +4,7 @@ import style from './style.module.css';
 import { getNumbersFromString, reverseMatrix } from '../../helpers/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { playerMove, setWinner } from '../../actions';
+import { ToastsStore } from 'react-toasts';
 
 const horizontalVictory = (gameState) => {
   let hasVictory = 0;
@@ -54,6 +55,7 @@ const TicTacToeBoard = () => {
 
     if (winner) {
       dispatch(setWinner({ winner }));
+      ToastsStore.success(`Player ${winner} wins!`);
     };
   }, [gameState, dispatch]);
 
