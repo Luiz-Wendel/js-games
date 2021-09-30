@@ -1,8 +1,9 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { useSelector } from 'react-redux';
 import style from './style.module.css';
 
 const TicTacToeColumn = ({ reference, parentReference }) => {
@@ -12,8 +13,8 @@ const TicTacToeColumn = ({ reference, parentReference }) => {
   React.useEffect(() => {
     const stateValue = gameState[parentReference][reference];
 
-    const playerOneSymbol = <FontAwesomeIcon icon={ faTimes } size="2x" />;
-    const playerTwoSymbol = <FontAwesomeIcon icon={ faCircle } size="2x" />;
+    const playerOneSymbol = <FontAwesomeIcon icon={faTimes} size="2x" />;
+    const playerTwoSymbol = <FontAwesomeIcon icon={faCircle} size="2x" />;
 
     if (stateValue === 0) setColumnValue();
     if (stateValue === 1) setColumnValue(playerOneSymbol);
@@ -22,8 +23,8 @@ const TicTacToeColumn = ({ reference, parentReference }) => {
 
   return (
     <section
-      id={ `column-${reference}` }
-      className={ style.column }
+      id={`column-${reference}`}
+      className={style.column}
     >
       {
         columnValue
@@ -33,3 +34,8 @@ const TicTacToeColumn = ({ reference, parentReference }) => {
 };
 
 export default TicTacToeColumn;
+
+TicTacToeColumn.propTypes = {
+  reference: PropTypes.string,
+  parentReference: PropTypes.string,
+}.isRequired;

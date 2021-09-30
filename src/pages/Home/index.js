@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class Home extends React.Component {
   render() {
@@ -6,7 +6,7 @@ class Home extends React.Component {
       <main>
         <h1>JS Games</h1>
       </main>
-    )
+    );
   }
 }
 

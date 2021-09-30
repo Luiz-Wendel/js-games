@@ -17,7 +17,7 @@ const INITIAL_STATE = {
 const setMove = (gameState, { row, column }, player) => {
   const newGameState = [];
 
-  gameState.forEach((row) => newGameState.push([...row]));
+  gameState.forEach((gameRow) => newGameState.push([...gameRow]));
 
   newGameState[row][column] = player;
 
@@ -39,7 +39,7 @@ const ticTacToeReducer = (state = INITIAL_STATE, { type, payload }) => {
         score: {
           ...state.score,
           [payload.winner]: state.score[payload.winner] + 1,
-        }
+        },
       };
     case RESET_BOARD:
       return {

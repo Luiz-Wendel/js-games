@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 const PlayerCard = ({ id, title, image }) => {
   const { score } = useSelector(({ ticTacToe }) => ticTacToe);
 
   return (
-    <section id={ id }>
+    <section id={id}>
       <h2>{ title }</h2>
       { image }
       <span>{ score[id === 'p1' ? 1 : 2] }</span>
@@ -14,3 +15,9 @@ const PlayerCard = ({ id, title, image }) => {
 };
 
 export default PlayerCard;
+
+PlayerCard.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  image: PropTypes.element,
+}.isRequired;

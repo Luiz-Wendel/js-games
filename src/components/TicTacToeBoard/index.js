@@ -1,10 +1,10 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastsStore } from 'react-toasts';
 import TicTacToeRow from '../TicTacToeRow';
 import style from './style.module.css';
 import { getNumbersFromString, reverseMatrix } from '../../helpers/utils';
-import { useDispatch, useSelector } from 'react-redux';
 import { playerMove, setWinner } from '../../actions';
-import { ToastsStore } from 'react-toasts';
 
 const horizontalVictory = (gameState) => {
   let hasVictory = 0;
@@ -12,7 +12,7 @@ const horizontalVictory = (gameState) => {
   gameState.forEach((row) => {
     const rowSet = [...new Set(row)];
 
-    if (rowSet[0] !== 0 && rowSet.length === 1) hasVictory = rowSet[0];
+    if (rowSet[0] !== 0 && rowSet.length === 1) [hasVictory] = rowSet;
   });
 
   return hasVictory;
@@ -33,13 +33,12 @@ const diagonalVictory = (gameState) => {
 
     diagonal.forEach(([row, column]) => {
       newRow.push(gameState[row][column]);
-    })
+    });
 
     diagonalGameState.push(newRow);
   });
 
   return horizontalVictory(diagonalGameState);
-
 };
 
 const checkVictory = (gameState) => horizontalVictory(gameState)
@@ -51,23 +50,23 @@ const TicTacToeBoard = () => {
   const { gameState, playerTurn, winner } = useSelector(({ ticTacToe }) => ticTacToe);
 
   React.useEffect(() => {
-    const winner = checkVictory(gameState);
+    const gameWinner = checkVictory(gameState);
 
-    if (winner) {
-      dispatch(setWinner({ winner }));
-      ToastsStore.success(`Player ${winner} wins!`);
-    };
+    if (gameWinner) {
+      dispatch(setWinner({ winner: gameWinner }));
+      ToastsStore.success(`Player ${gameWinner} wins!`);
+    }
   }, [gameState, dispatch]);
 
   const handlePlayerTurn = (row, column, target) => {
     const payload = {
       row,
-      column
+      column,
     };
 
     dispatch(playerMove(payload));
 
-    target.dataset.player = playerTurn;
+    target.setAttribute('data-player', playerTurn);
   };
 
   const handlePlayerMove = ({ target }) => {
@@ -79,13 +78,13 @@ const TicTacToeBoard = () => {
 
       if (gameState[row][column] === 0) handlePlayerTurn(row, column, target);
     }
-  }
+  };
 
   return (
-    <section id="board" onClick={ handlePlayerMove } className={ style.board }>
-      <TicTacToeRow reference={ 0 } />
-      <TicTacToeRow reference={ 1 } />
-      <TicTacToeRow reference={ 2 } />
+    <section id="board" onClick={handlePlayerMove} aria-hidden="true" className={style.board}>
+      <TicTacToeRow reference={0} />
+      <TicTacToeRow reference={1} />
+      <TicTacToeRow reference={2} />
     </section>
   );
 };

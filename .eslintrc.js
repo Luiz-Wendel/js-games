@@ -18,5 +18,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/jsx-filename-extension': 0,
+    'react/prefer-stateless-function': 0,
+    'import/no-extraneous-dependencies': 0,
   },
 };

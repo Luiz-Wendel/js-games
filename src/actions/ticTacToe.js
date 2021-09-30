@@ -13,5 +13,5 @@ export const setWinner = (payload) => ({
 });
 
 export const resetBoard = () => ({
-  type: RESET_BOARD
+  type: RESET_BOARD,
 });

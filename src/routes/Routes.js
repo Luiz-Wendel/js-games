@@ -8,11 +8,11 @@ class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/' component={ Home } />
-        <Route exact path='/tic-tac-toe' component={ TicTacToe } />
-        <Route component={ NotFound } />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/tic-tac-toe" component={TicTacToe} />
+        <Route component={NotFound} />
       </Switch>
-    )
+    );
   }
 }
 
