@@ -1,4 +1,4 @@
-import { PLAYER_MOVE, SET_WINNER } from '../actions';
+import { PLAYER_MOVE, SET_WINNER, RESET_BOARD } from '../actions';
 
 const INITIAL_STATE = {
   gameState: [
@@ -15,7 +15,9 @@ const INITIAL_STATE = {
 };
 
 const setMove = (gameState, { row, column }, player) => {
-  const newGameState = [...gameState];
+  const newGameState = [];
+
+  gameState.forEach((row) => newGameState.push([...row]));
 
   newGameState[row][column] = player;
 
@@ -38,6 +40,11 @@ const ticTacToeReducer = (state = INITIAL_STATE, { type, payload }) => {
           ...state.score,
           [payload.winner]: state.score[payload.winner] + 1,
         }
+      };
+    case RESET_BOARD:
+      return {
+        ...INITIAL_STATE,
+        score: state.score,
       };
     default:
       return state;

@@ -15,6 +15,7 @@ const TicTacToeColumn = ({ reference, parentReference }) => {
     const playerOneSymbol = <FontAwesomeIcon icon={ faTimes } size="2x" />;
     const playerTwoSymbol = <FontAwesomeIcon icon={ faCircle } size="2x" />;
 
+    if (stateValue === 0) setColumnValue();
     if (stateValue === 1) setColumnValue(playerOneSymbol);
     if (stateValue === 2) setColumnValue(playerTwoSymbol);
   }, [gameState, reference, parentReference]);
