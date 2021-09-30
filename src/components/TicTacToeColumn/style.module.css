@@ -1,0 +1,11 @@
+.column {
+  width: 5em;
+  height: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column + .column {
+  border-left: 1px solid black;
+}

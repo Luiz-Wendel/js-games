@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react';
+import GameCard from '../../components/GameCard';
 
-class Home extends Component {
+class Home extends React.Component {
   render() {
     return (
       <main>
         <h1>JS Games</h1>
+        <section>
+          <GameCard title="TicTacToe" path="/tic-tac-toe" />
+        </section>
       </main>
-    )
+    );
   }
 }
 
