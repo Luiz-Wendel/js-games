@@ -3,7 +3,7 @@ import TicTacToeRow from '../TicTacToeRow';
 import style from './style.module.css';
 import { getNumbersFromString, reverseMatrix } from '../../helpers/utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { playerMove } from '../../actions';
+import { playerMove, setWinner } from '../../actions';
 
 const horizontalVictory = (gameState) => {
   let hasVictory = 0;
@@ -50,8 +50,12 @@ const TicTacToeBoard = () => {
   const { gameState, playerTurn } = useSelector(({ ticTacToe }) => ticTacToe);
 
   React.useEffect(() => {
-    console.log(checkVictory(gameState));
-  }, [gameState]);
+    const winner = checkVictory(gameState);
+
+    if (winner) {
+      dispatch(setWinner({ winner }));
+    };
+  }, [gameState, dispatch]);
 
   const handlePlayerTurn = (row, column, target) => {
     const payload = {
